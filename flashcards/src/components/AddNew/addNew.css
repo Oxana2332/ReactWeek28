@@ -1,6 +1,8 @@
 .wordItem {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    width: 100%;
     border-color: rgba(0, 0, 0, 0.355);
     font-family: var(--basicFont);
 }
