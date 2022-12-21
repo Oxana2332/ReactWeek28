@@ -1,20 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TrainingMode from '../TrainingMode/TrainingMode.jsx'
 import Dictionary from '../Dictionary/Dictionary.jsx'
 import './mainPage.css'
 
 function MainPage() {
-    // Кот Учёный: 
-    let mainpage = false; 
-    let dictionary = true;
-    let trainingMode = false;
-    // эти данные лучше в будущем будет переписать на состояния
+    const [mainpage, setMain] = useState(true);
+    const [dictionary, setDictionary] = useState(false);
+    const [trainingMode, setTrainingMode] = useState(false);
 
+    const openDictionary = () => {
+        setMain(!mainpage);
+        setDictionary(!dictionary);
+    }
+
+    const openTrainingMode = () => {
+        setMain(!mainpage);
+        setTrainingMode(!trainingMode);
+    }
+
+    
     if (mainpage) {
         return (
             <div className="main">
-                <button className="main_element">Dictionary</button>
-                <button className="main_element">TrainingMode</button>
+                <button className="main_element" onClick={openDictionary}>Dictionary</button>
+                <button className="main_element" onClick={openTrainingMode}>TrainingMode</button>
             </div>
         )
     }
