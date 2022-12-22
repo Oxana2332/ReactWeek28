@@ -18,20 +18,29 @@ function WordItem({ item, editWordItem }) {
     }, [item])
 
     function handlerEnglish(e){
-        setValueEnglish(e.targer.value)
+        setValueEnglish(e.target.value)
     }
     function handlerTranscription(e){
-        setValueTranscription(e.targer.value)
+        setValueTranscription(e.target.value)
     }
     function handlerRussian(e){
-        setValueRussian(e.targer.value)
+        setValueRussian(e.target.value)
     }
     function handlerTags(e){
-        setValueTags(e.targer.value)
+        setValueTags(e.target.value)
     }
 
     function saveWordItem(){
         editWordItem(valueEnglish,valueTranscription,valueRussian,valueTags,id)
+        setOpenInput(!openInput)
+    }
+
+    function cancelWordItem(){
+        setOpenInput(!openInput)
+        setValueEnglish(english)
+        setValueTranscription(transcription)
+        setValueRussian(russian)
+        setValueTags(tags)
     }
 
     return (
@@ -42,7 +51,7 @@ function WordItem({ item, editWordItem }) {
                 <input className='word_input' type="text" value={valueRussian} onChange={handlerRussian} />
                 <input className='word_input' type="text" value={valueTags} onChange={handlerTags} />
                 <button className='button save' onClick={saveWordItem}></button>
-                <button className='button cancel'></button>
+                <button className='button cancel' onClick={cancelWordItem}></button>
             </div>) : (
                 <div className='wordItem'>
                     <div className='word'>{valueEnglish}</div>
@@ -59,37 +68,3 @@ function WordItem({ item, editWordItem }) {
 export default WordItem
 
 
-
-// import React, { useState } from 'react'
-// import './wordItem.css'
-
-// function WordItem(props) {
-
-//     const [edit, setEdit] = useState(false);
-//     const openEdit = () => {
-//         setEdit(!edit);
-//     }
-
-//     return (
-// <div>
-// {edit ? ( <div className='wordItem'>
-//                 <input className='word_input' type="text" />
-//                 <input className='word_input' type="text" />
-//                 <input className='word_input' type="text" />
-//                 <input className='word_input' type="text" />
-//                 <button className='button save'></button>
-//                 <button className='button cancel' onClick={openEdit}></button>
-//                 </div>) : (
-//                     <div className='wordItem'>
-//                     <div className='word' type="text">{props.english}</div>
-//                     <div className='word' type="text">{props.transcription}</div>
-//                     <div className='word' type="text">{props.russian}</div>
-//                     <div className='word' type="text">{props.tags}</div>
-//                     <button className='button edit' onClick={openEdit}></button>
-//                     <button className='button del'></button>
-//                     </div>)}
-// </div>
-//     )
-// }
-
-// export default WordItem
